@@ -105295,12 +105295,10 @@ function Home() {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _tunes_TunesList__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./tunes/TunesList */ "./resources/js/components/tunes/TunesList.js");
-/* harmony import */ var _tunes_TunesSearchForm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./tunes/TunesSearchForm */ "./resources/js/components/tunes/TunesSearchForm.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _tunes_TunesList__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./tunes/TunesList */ "./resources/js/components/tunes/TunesList.js");
+/* harmony import */ var _tunes_TunesSearchForm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./tunes/TunesSearchForm */ "./resources/js/components/tunes/TunesSearchForm.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -105317,16 +105315,17 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-
 function Tunes() {
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
       _useState2 = _slicedToArray(_useState, 2),
       movies = _useState2[0],
       setMovies = _useState2[1];
 
   function handleSearch(query) {
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("https://itunes.apple.com/search?term=".concat(encodeURI(query), "\n         &entity=movie\n         &limit=5")).then(function (response) {
-      var iTunesMovies = response.data.results.filter(function (movie) {
+    fetch("https://itunes.apple.com/search?term=".concat(encodeURI(query), "\n          &entity=movie\n          &limit=5")).then(function (response) {
+      return response.json();
+    }).then(function (data) {
+      var iTunesMovies = data.results.filter(function (movie) {
         return movie.kind == 'feature-movie';
       }).map(function (movie) {
         return extractData(movie);
@@ -105352,11 +105351,11 @@ function Tunes() {
     };
   }
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("article", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("article", {
     className: "tunes"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", null, "Tunes"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_tunes_TunesSearchForm__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Tunes"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_tunes_TunesSearchForm__WEBPACK_IMPORTED_MODULE_2__["default"], {
     onSearch: handleSearch
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_tunes_TunesList__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_tunes_TunesList__WEBPACK_IMPORTED_MODULE_1__["default"], {
     movies: movies
   }));
 }

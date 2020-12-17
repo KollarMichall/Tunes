@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React, {useState} from 'react';
 import TunesList from './tunes/TunesList'
 import TunesSearchForm from './tunes/TunesSearchForm'
@@ -9,13 +8,15 @@ function Tunes() {
     const [movies, setMovies] = useState([])
      
      function handleSearch(query){
-         axios.get(`https://itunes.apple.com/search?term=${encodeURI(query)}
-         &entity=movie
-         &limit=5`).then(response => {
-             let iTunesMovies = response.data.results.filter((movie) => movie.kind == 'feature-movie')
-             .map((movie) => extractData(movie))
-             setMovies(iTunesMovies);
-            })
+        fetch(`https://itunes.apple.com/search?term=${encodeURI(query)}
+          &entity=movie
+          &limit=5`)
+        .then(response => response.json())
+        .then(data => {
+            let iTunesMovies = data.results.filter((movie) => movie.kind == 'feature-movie')
+         .map((movie) => extractData(movie))
+          setMovies(iTunesMovies);
+  });
         
         
         
