@@ -12,11 +12,12 @@ function Tunes() {
          axios.get(`https://itunes.apple.com/search?term=${encodeURI(query)}
          &entity=movie
          &limit=5`).then(response => {
-             let iTunesMovies = response.data.results.filter((song) => song.kind == 'feature-movie')
-             .map((song) => extractData(song))
+             let iTunesMovies = response.data.results.filter((movie) => movie.kind == 'feature-movie')
+             .map((movie) => extractData(movie))
              setMovies(iTunesMovies);
             })
-         
+        
+        
         
   }
   function extractData( { trackId: id, trackName: title, artistName:artist, previewUrl:videoFile, artworkUrl100:artwork, collectionName: film }){

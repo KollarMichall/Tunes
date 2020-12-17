@@ -105326,10 +105326,10 @@ function Tunes() {
 
   function handleSearch(query) {
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("https://itunes.apple.com/search?term=".concat(encodeURI(query), "\n         &entity=movie\n         &limit=5")).then(function (response) {
-      var iTunesMovies = response.data.results.filter(function (song) {
-        return song.kind == 'feature-movie';
-      }).map(function (song) {
-        return extractData(song);
+      var iTunesMovies = response.data.results.filter(function (movie) {
+        return movie.kind == 'feature-movie';
+      }).map(function (movie) {
+        return extractData(movie);
       });
       setMovies(iTunesMovies);
     });
