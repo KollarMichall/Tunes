@@ -1,0 +1,42 @@
+.tunes{
+
+    .input {
+        margin: 1em;
+        border-radius: 5em;
+        outline: none;
+        padding-left: 2.2em;
+        
+        
+        background: {
+            image: url('../img/search.svg');
+            repeat: no-repeat;
+            position-y: 50%;
+            position-x: 1em;
+            color: rgb(135, 176, 184);
+            size: 1em;
+        }
+    }
+}
+.movie-enter-active,
+.movie-exit-active {
+	transition: all 0.2s;
+}
+
+.movie-enter {
+	opacity: 0;
+	transform: scale(0.85);
+}
+
+.movie-enter-active {
+	opacity: 1;
+	transform: translateX(0);
+}
+
+.movie-exit {
+	opacity: 1;
+}
+
+.movie-exit-active {
+	opacity: 0;
+	transform: scale(0.85);
+}
